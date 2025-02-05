@@ -111,7 +111,26 @@ df
 
 !streamlit run streamlit_app.py &>/dev/null &
 
-!ngrok authtoken 2sbhzmMrnAYf8oLLhxH2dS4xjWP_22g48Z2zX4pScYfuKVTfV
+import subprocess
+import streamlit as st
+
+# Replace with your actual Ngrok token
+NGROK_AUTH_TOKEN = "2sbhzmMrnAYf8oLLhxH2dS4xjWP_22g48Z2zX4pScYfuKVTfV"
+
+# Run Ngrok command
+def start_ngrok():
+    command = ["ngrok", "authtoken", NGROK_AUTH_TOKEN]
+    result = subprocess.run(command, capture_output=True, text=True)
+
+    if result.returncode == 0:
+        st.success("✅ Ngrok authentication successful!")
+    else:
+        st.error(f"❌ Ngrok authentication failed: {result.stderr}")
+
+# Streamlit UI Button
+if st.button("Authenticate Ngrok"):
+    start_ngrok()
+
 
 from pyngrok import ngrok
 
