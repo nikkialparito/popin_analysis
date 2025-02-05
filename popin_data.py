@@ -107,7 +107,6 @@ df
 #     st.plotly_chart(choropleth, use_container_width=True)
 #
 
-!streamlit run streamlit_app.py &>/dev/null &
 
 import subprocess
 import streamlit as st
